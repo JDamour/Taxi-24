@@ -13,13 +13,14 @@ app.use(bodyParser.json());
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-let dev_db_url = 'mongodb://localhost/taxi24';
-mongoose.connect(dev_db_url);
-
+// mongoose.connect("mongodb://localhost/taxi24", { useNewUrlParser: true });
+mongoose.connect("mongodb://taxi24:taxi24@ds151012.mlab.com:51012/taxi24",{ useNewUrlParser: true});
 mongoose.Promise = global.Promise;
-let db = mongoose.connection;
+var db = mongoose.connection;
+db.once('open',function con () {
+    console.log('Connection Has been made');
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+});
 
 
 app.use('/api', driver);

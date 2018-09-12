@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 });
 // Import Driver controller
 var driverController = require('../controllers/driver.controller');
-// Contact routes
+// Drivers routes
 router.route('/drivers')
     .get(driverController.index)
     .post(driverController.new);

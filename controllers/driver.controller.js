@@ -18,21 +18,29 @@ exports.index = function (req, res) {
 };
 // Handle create Driver actions
 exports.new = function (req, res) {
-    var driver = new Driver();
-        driver.names = req.body.names,
-        driver.address = req.body.address,
-        driver.location = req.body.location,
-        driver.telephone = req.body.telephone,
-        driver.status = req.body.status
+    var driver = new Driver({
+        names:req.body.names,
+        address : req.body.address,
+        location : req.body.location,
+        telephone : req.body.telephone,
+        statusDriver : req.body.statusDriver
+    });
+        driver.save().then(
+            function (response){
+               console.log(response);
+            }
+        ).catch(function(err){
+            console.log(err);
+        });
 // save the driver and check for errors
-    driver.save(function (err) {
+    // driver.save(function (err) {
         // if (err)
         //     res.json(err);
-        res.json({
-            message: 'New Driver created!',
-            data: driver
-        });
-    });
+        // res.json({
+            // message: 'New Driver created!',
+            // data: driver
+        // });
+    // });
 };
 // Handle view contact info
 exports.view = function (req, res) {

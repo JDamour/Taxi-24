@@ -19,15 +19,16 @@ var DriverSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
+    statusDriver: {
         type: String,
         required: true
-    },
-    create_date: {
-        type: Date,
-        default: Date.now
     }
-});
+},
+{ 
+    timestamps: true
+}
+
+);
 // Export Driver model
 var Driver = module.exports = mongoose.model('Drivers', DriverSchema);
 module.exports.get = function (callback, limit) {
