@@ -2,6 +2,10 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 const driver = require('./routes/driver.route');
+const trip = require('./routes/trip.route');
+
+const rider = require('./routes/rider.route');
+
 // initialize our express app
 const app = express();
 
@@ -24,6 +28,8 @@ db.once('open',function con () {
 
 
 app.use('/api', driver);
+app.use('/api', trip);
+app.use('/api', rider);
 let port = 3000;
 
 app.listen(port, () => {

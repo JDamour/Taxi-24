@@ -35,7 +35,7 @@ exports.new = function(req, res) {
     });
   //   save the driver and check for errors
 };
-// Handle view contact info
+// Handle view driver info
 exports.view = function(req, res) {
   Driver.findById(req.params.driver_id, function(err, driver) {
     if (err) res.send(err);
@@ -53,18 +53,19 @@ exports.update = function(req, res) {
       (driver.address = req.body.address),
       (driver.location = req.body.location),
       (driver.telephone = req.body.telephone),
-      (driver.status = req.body.status);
-    // save the contact and check for errors
-    contact.save(function(err) {
-      if (err) res.json(err);
-      res.json({
-        message: "Driver Info updated",
-        data: driver
-      });
+      (driver.statusDriver = req.body.statusDriver);
+    // save the Driver and check for errors
+    driver.save()
+    .then(function(response) {
+      res.status(201).json({ message: "success", driverInfo: response._doc });
+    })
+    .catch(function(err) {
+      console.log(err);
     });
+    
   });
 };
-// Handle delete contact
+// Handle delete Driver
 exports.delete = function(req, res) {
   Driver.remove(
     {
