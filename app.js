@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-// mongoose.connect("mongodb://localhost/taxi24", { useNewUrlParser: true });
-mongoose.connect("mongodb://taxi24:taxi24@ds151012.mlab.com:51012/taxi24",{ useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/taxi24", { useNewUrlParser: true });
+// mongoose.connect("mongodb://taxi24:taxi24@ds151012.mlab.com:51012/taxi24",{ useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.once('open',function con () {
